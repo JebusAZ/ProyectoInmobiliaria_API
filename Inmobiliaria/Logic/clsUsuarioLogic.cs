@@ -14,7 +14,7 @@ namespace Inmobiliaria.Logic
     public class UsuarioLogic
     {
 
-        string connection = @"Data Source=localhost;Initial Catalog=Inmobiliaria; User ID=sa;Password=admin";
+        string stringConnection = sqlConexion.connection;
 
         internal ResultSet<Usuario> crearUsuario(Usuario objRequest)
         {
@@ -32,7 +32,7 @@ namespace Inmobiliaria.Logic
             parameters.Add("@isOauth ", objRequest.isOauth);
 
 
-            using (var cnn = new SqlConnection(connection))
+            using (var cnn = new SqlConnection(stringConnection))
             {
                 try
                 {
@@ -64,7 +64,7 @@ namespace Inmobiliaria.Logic
             parameters.Add("@email ", objRequest.email);
             
 
-            using (var cnn = new SqlConnection(connection))
+            using (var cnn = new SqlConnection(stringConnection))
             {
                 try
                 {
