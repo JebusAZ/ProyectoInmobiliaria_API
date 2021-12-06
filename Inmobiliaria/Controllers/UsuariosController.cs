@@ -38,5 +38,7 @@ namespace Inmobiliaria.Controllers
             return StatusCode(objUsuario.CodigoEstatus, objUsuario);
         }
 
+
+
     }
 }

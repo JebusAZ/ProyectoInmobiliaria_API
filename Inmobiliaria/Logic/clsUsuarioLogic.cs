@@ -14,7 +14,7 @@ namespace Inmobiliaria.Logic
     public class UsuarioLogic
     {
 
-        string stringConnection = sqlConexion.connection;
+        string stringConnection = configuraciones.connection;
 
         internal ResultSet<Usuario> crearUsuario(Usuario objRequest)
         {
