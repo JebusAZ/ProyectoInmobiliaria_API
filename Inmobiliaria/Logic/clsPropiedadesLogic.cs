@@ -96,6 +96,97 @@ namespace Inmobiliaria.Logic
 
         }
 
+        internal ResultSet<Tag> obtenerTags()
+        {
+            ResultSet<Tag> objResult = new ResultSet<Tag>();
+            objResult.Data = new List<Tag>();
+            DynamicParameters parameters = new();
+
+            parameters.Add("@opcion ", 5); //obtener todos los tags
+
+
+            try
+            {
+                using (var cnn = new SqlConnection(stringConnection))
+                {
+                    var tags = cnn.Query<Tag>("sp_tags", parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                    if (tags.Count == 0) throw new Exception("No se encontraron registros");
+
+                    objResult.Data = tags;
+                    objResult.CodigoEstatus = (int)HttpStatusCode.OK;
+                    objResult.Notificaciones = "Registro obtenidos con éxito";
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objResult.CodigoEstatus = (int)HttpStatusCode.BadRequest;
+                objResult.Notificaciones = "No se encontraron registros";
+                objResult.ErrorMessage = ex.Message;
+            }
+
+            return objResult;
+
+        }
+
+        internal ResultSet<Propiedades> getPropiedadById(int id)
+        {
+
+            ResultSet<Propiedades> objResult = new ResultSet<Propiedades>();
+            objResult.Data = new List<Propiedades>();
+            DynamicParameters parameters = new();
+
+            parameters.Add("@opcion ", 6); //obtener propidad por id
+            parameters.Add("@id", id); 
+
+            try
+            {
+                using (var cnn = new SqlConnection(stringConnection))
+                {
+                    var propiedad = cnn.QueryFirstOrDefault<Propiedades>("sp_propiedades", parameters, commandType: CommandType.StoredProcedure);
+
+                    if (propiedad == null) throw new Exception("No se encontraron registros");
+
+                    Propiedades objPropiedad = new Propiedades();
+                    objPropiedad.descripcion = propiedad.descripcion;
+                    objPropiedad.lstImagenes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Imagenes>>(propiedad.imagenesJson);
+                    objPropiedad.lstTag = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Tag>>(propiedad.tagsJson);
+
+
+                    List<Imagenes> lstImagenes = new List<Imagenes>();
+                    foreach (var i in objPropiedad.lstImagenes)
+                    {
+
+                        Imagenes oImagenes = new();
+                        var paths = i.ruta.Split("/");
+                        oImagenes.imagenString = Convert.ToBase64String(File.ReadAllBytes(i.ruta));
+                        oImagenes.nombre = paths[paths.Length - 1];
+
+                        lstImagenes.Add(oImagenes);
+                    }
+
+                    objPropiedad.lstImagenes = lstImagenes;
+
+                    objResult.ObjData = objPropiedad;
+                    objResult.CodigoEstatus = (int)HttpStatusCode.OK;
+                    objResult.Notificaciones = "Registros encontrados";
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                objResult.CodigoEstatus = (int)HttpStatusCode.BadRequest;
+                objResult.Notificaciones = "No se pudo crear la publicación";
+                objResult.ErrorMessage = ex.Message;
+            }
+
+            return objResult;
+
+        }
+
         internal ResultSet<Propiedades> listarPropiedades()
         {
             ResultSet<Propiedades> objResult = new ResultSet<Propiedades>();
@@ -135,12 +226,6 @@ namespace Inmobiliaria.Logic
                         objResult.Data.Add(objPropiedad);
                     }
 
-
-
-                    
-
-
-                    objResult.Data = result;
                     objResult.CodigoEstatus = (int)HttpStatusCode.OK;
                     objResult.Notificaciones = "Registros encontrados";
                 }
