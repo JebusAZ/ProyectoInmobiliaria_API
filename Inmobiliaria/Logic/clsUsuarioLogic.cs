@@ -62,7 +62,7 @@ namespace Inmobiliaria.Logic
 
             parameters.Add("@opcion ", 6);
             parameters.Add("@email ", objRequest.email);
-            
+
 
             using (var cnn = new SqlConnection(stringConnection))
             {

@@ -56,9 +56,9 @@ namespace Inmobiliaria.Logic
                             Imagenes objImagen = new Imagenes();
 
                             
-                            objImagen.ruta = path + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + id + "/" + i.nombre;
+                            objImagen.ruta = path + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + id + "/";
 
-                            Funciones.GuardarImagen(objImagen.ruta , Convert.FromBase64String(i.imagenString));
+                            Funciones.GuardarImagen(objImagen.ruta,i.nombre , Convert.FromBase64String(i.imagenString));
                             lstImagenes.Add(objImagen);
 
                         }
