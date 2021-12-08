@@ -64,6 +64,7 @@ namespace Inmobiliaria.Logic
                         }
                         parameters = new DynamicParameters();
 
+                        parameters.Add("@opcion", 1);//Insertar
                         parameters.Add("@imagenes", Newtonsoft.Json.JsonConvert.SerializeObject(lstImagenes));
                         parameters.Add("@idPropiedad", id);
 

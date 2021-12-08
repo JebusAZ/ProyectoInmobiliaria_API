@@ -10,6 +10,6 @@ namespace Inmobiliaria.Models
 
         public static string connection = @"Data Source=20.119.56.58;Initial Catalog=Inmobiliaria; User ID=sa;Password=Inmueblestuksa2021";
 
-        public static string rutas = "/home/proyectoinmobiliaria/imagenes/";
+        public static string rutas = OperatingSystem.IsLinux()?"/home/proyectoinmobiliaria/imagenes/": @"C:\Alcoholes";
     }
 }
