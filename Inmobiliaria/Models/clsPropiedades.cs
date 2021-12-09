@@ -8,6 +8,9 @@ namespace Inmobiliaria.Models
     public class Propiedades
     {
         public int? id { get; set; }
+        public string titulo { get; set; }
+        public string municipio { get; set; }
+        public string direccion { get; set; }
         public string descripcion { get; set; }
         public int precio { get; set; }
         public List<Tag> lstTag { get; set; }

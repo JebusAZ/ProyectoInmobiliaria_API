@@ -27,6 +27,9 @@ namespace Inmobiliaria.Logic
 
 
             parameters.Add("@opcion ", 1);
+            parameters.Add("@titulo", objRequest.titulo);
+            parameters.Add("@municipio", objRequest.municipio);
+            parameters.Add("@direccion", objRequest.direccion);
             parameters.Add("@descripcion", objRequest.descripcion);
             parameters.Add("@precio", objRequest.precio);
 
