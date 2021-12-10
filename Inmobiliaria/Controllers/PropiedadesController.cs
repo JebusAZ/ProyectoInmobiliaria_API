@@ -1,16 +1,17 @@
 ﻿using API.Model;
 using Inmobiliaria.Logic;
 using Inmobiliaria.Models;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 
 namespace Inmobiliaria.Controllers
 {
-    [EnableCors("MyAllowSpecificOrigins")]
+
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class PropiedadesController : ControllerBase
