@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 namespace Inmobiliaria.Controllers
 {
 
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class TagController : ControllerBase

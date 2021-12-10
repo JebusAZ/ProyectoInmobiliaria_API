@@ -50,9 +50,7 @@ namespace Inmobiliaria
                                       //builder.AllowAnyOrigin();
 
                                       //builder.WithOrigins("*", "http://localhost:4200");
-                                      builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
-                                      builder.AllowAnyHeader();
-                                      builder.AllowAnyMethod();
+                                      builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
                                   })
                 );
         }
@@ -67,7 +65,7 @@ namespace Inmobiliaria
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Inmobiliaria v1"));
             }
 
-            app.UseCors();
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();
             
