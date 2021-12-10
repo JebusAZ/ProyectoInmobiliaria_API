@@ -47,10 +47,12 @@ namespace Inmobiliaria
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      //builder.AllowAnyOrigin();
-
-                                      //builder.WithOrigins("*", "http://localhost:4200");
-                                      builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                                      builder.WithOrigins("http://localhost:4200")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod()
+                                      .AllowCredentials()
+                                      //.SetIsOriginAllowedToAllowWildcardSubdomains()
+                                      .SetIsOriginAllowedToAllowWildcardSubdomains();
                                   })
                 );
         }
