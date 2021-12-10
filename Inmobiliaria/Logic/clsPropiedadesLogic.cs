@@ -23,7 +23,8 @@ namespace Inmobiliaria.Logic
 
             ResultSet<Propiedades> objResult = new ResultSet<Propiedades>();
             DynamicParameters parameters = new();
-            List<Imagenes> lstImagenes = new List<Imagenes>(); 
+            List<Imagenes> lstImagenes = new List<Imagenes>();
+
 
 
             parameters.Add("@opcion ", 1);
@@ -86,7 +87,13 @@ namespace Inmobiliaria.Logic
                     }
                 }
 
-            }catch(Exception ex)
+                Funciones.Log(new Log() { 
+                    accion = "Insertar",
+                    metodo = "Propiedades"
+                });
+
+            }
+            catch(Exception ex)
             {
 
 

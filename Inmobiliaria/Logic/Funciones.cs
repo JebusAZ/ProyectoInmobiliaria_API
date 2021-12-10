@@ -26,5 +26,20 @@ namespace Inmobiliaria.Logic
 
         }
 
+        internal static void Log(Log log)
+        {
+            try
+            {
+
+                MongoLogic objMongoLogic = new MongoLogic();
+
+                objMongoLogic.Insert(log);
+            }
+            catch
+            {
+
+            }
+
+        }
     }
 }

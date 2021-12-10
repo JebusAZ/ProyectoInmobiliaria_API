@@ -43,6 +43,14 @@ namespace Inmobiliaria.Logic
                     objResult.CodigoEstatus = (int)HttpStatusCode.OK;
                     objResult.Notificaciones = "Se ha creado el usuario con éxito";
 
+                    Funciones.Log(new Log()
+                    {
+                        accion = "Crear usuario",
+                        usuario = objRequest.email,
+                        rol = "cliente",
+                        metodo = "Inicio de sesión por login (Usuario y contraseña)"
+                    });
+
                 }
                 catch (Exception ex)
                 {
@@ -78,6 +86,13 @@ namespace Inmobiliaria.Logic
                     objResult.ObjData = result;
                     objResult.CodigoEstatus = (int)HttpStatusCode.OK;
                     objResult.Notificaciones = "Se ha recuperado por éxito";
+
+                    Funciones.Log(new Log()
+                    {
+                        accion = "Iniciar Sesión",
+                        usuario = objRequest.email,
+                        metodo = "Inicio de sesión por Oauth (google)"
+                    });
 
                 }
                 catch (Exception ex)
@@ -117,6 +132,14 @@ namespace Inmobiliaria.Logic
                     objResult.ObjData = result;
                     objResult.CodigoEstatus = (int)HttpStatusCode.OK;
                     objResult.Notificaciones = "Se ha recuperado por éxito";
+
+                    Funciones.Log(new Log()
+                    {
+                        accion = "Iniciar Sesión",
+                        usuario = objRequest.email,
+                        metodo = "Inicio de sesión por login (Usuario y contraseña)"
+                    });
+
 
                 }
                 catch (Exception ex)
