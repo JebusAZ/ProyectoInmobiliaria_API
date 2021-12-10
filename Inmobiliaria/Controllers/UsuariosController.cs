@@ -40,6 +40,18 @@ namespace Inmobiliaria.Controllers
             return StatusCode(objUsuario.CodigoEstatus, objUsuario);
         }
 
+        [Route("login")]
+        [HttpPost]
+        public IActionResult login(Usuario objRequest)
+        {
+            UsuarioLogic objUsuarioLogic = new UsuarioLogic();
+            ResultSet<Usuario> objUsuario = new ResultSet<Usuario>();
+
+            objUsuario = objUsuarioLogic.Login(objRequest);
+
+            return StatusCode(objUsuario.CodigoEstatus, objUsuario);
+        }
+
 
 
     }

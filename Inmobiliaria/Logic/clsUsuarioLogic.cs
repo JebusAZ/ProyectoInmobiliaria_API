@@ -90,5 +90,43 @@ namespace Inmobiliaria.Logic
             return objResult;
 
         }
+
+        internal ResultSet<Usuario> Login(Usuario objRequest)
+        {
+
+
+            ResultSet<Usuario> objResult = new ResultSet<Usuario>();
+            DynamicParameters parameters = new();
+
+            parameters.Add("@opcion ", 7);
+            parameters.Add("@email ", objRequest.email);
+            parameters.Add("@contraseña ", objRequest.contraseña);
+
+
+            using (var cnn = new SqlConnection(stringConnection))
+            {
+                try
+                {
+                    var result = cnn.QueryFirstOrDefault<Usuario>("sp_usuarios", parameters, commandType: CommandType.StoredProcedure);
+
+                    if (result is null) throw new Exception("Error al obtener el usuario");
+
+                    result.roles = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Rol>>(result.rolesJson);
+                    result.rolesJson = null;
+
+                    objResult.ObjData = result;
+                    objResult.CodigoEstatus = (int)HttpStatusCode.OK;
+                    objResult.Notificaciones = "Se ha recuperado por éxito";
+
+                }
+                catch (Exception ex)
+                {
+                    objResult.CodigoEstatus = (int)HttpStatusCode.BadRequest;
+                    objResult.Notificaciones = ex.Message;
+                }
+
+            }
+            return objResult;
+        }
     }
 }
