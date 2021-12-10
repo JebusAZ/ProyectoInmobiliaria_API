@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Inmobiliaria.Controllers
 {
 
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class TagController : ControllerBase

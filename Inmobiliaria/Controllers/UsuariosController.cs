@@ -1,6 +1,7 @@
 ﻿using API.Model;
 using Inmobiliaria.Logic;
 using Inmobiliaria.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Inmobiliaria.Controllers
 {
+    [EnableCors("MyAllowSpecificOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
