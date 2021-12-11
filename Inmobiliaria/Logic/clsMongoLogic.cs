@@ -18,8 +18,8 @@ namespace Inmobiliaria.Logic
         public MongoLogic()
         {
 
-            mongoClient = new MongoClient("mongodb://localhost:27017");
-            //mongoClient = new MongoClient("mongodb://dba-root:mongoadmin@inmobiliariatuksa.eastus.cloudapp.azure.com:27017");
+            //mongoClient = new MongoClient("mongodb://localhost:27017");
+            mongoClient = new MongoClient("mongodb://dba-root:mongoadmin@inmobiliariatuksa.eastus.cloudapp.azure.com:27017");
 
             database = mongoClient.GetDatabase("dbInmobiliaria");
 

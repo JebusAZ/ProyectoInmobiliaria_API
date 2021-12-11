@@ -7,9 +7,9 @@ namespace Inmobiliaria.Logic
 {
     public class Log
     {
-        internal string usuario;
-        internal string rol;
-
+        public string usuario { get; set; }
+        public string rol { get; set; }
+        public object request { get; set; }
         public string accion { get; set; }
         public string metodo { get; set; }
         public DateTime fecha { get; set; } = DateTime.Now;

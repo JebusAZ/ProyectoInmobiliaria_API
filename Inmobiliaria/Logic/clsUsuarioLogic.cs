@@ -48,7 +48,8 @@ namespace Inmobiliaria.Logic
                         accion = "Crear usuario",
                         usuario = objRequest.email,
                         rol = "cliente",
-                        metodo = "Inicio de sesión por login (Usuario y contraseña)"
+                        metodo = "Inicio de sesión por login (Usuario y contraseña)",
+                        request = objRequest
                     });
 
                 }
@@ -91,7 +92,8 @@ namespace Inmobiliaria.Logic
                     {
                         accion = "Iniciar Sesión",
                         usuario = objRequest.email,
-                        metodo = "Inicio de sesión por Oauth (google)"
+                        metodo = "Inicio de sesión por Oauth (google)",
+                        request = objRequest
                     });
 
                 }
@@ -137,7 +139,8 @@ namespace Inmobiliaria.Logic
                     {
                         accion = "Iniciar Sesión",
                         usuario = objRequest.email,
-                        metodo = "Inicio de sesión por login (Usuario y contraseña)"
+                        metodo = "Inicio de sesión por login (Usuario y contraseña)",
+                        request = objRequest
                     });
 
 

@@ -89,7 +89,8 @@ namespace Inmobiliaria.Logic
 
                 Funciones.Log(new Log() { 
                     accion = "Insertar",
-                    metodo = "Propiedades"
+                    metodo = "Propiedades",
+                    request = objRequest
                 });
 
             }
